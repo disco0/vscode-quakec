@@ -1,4 +1,5 @@
 const assert = require('assert');
+const { describe, it } = require('mocha');
 const Position = require('../quakec-common').Position;
 const Range = require('../quakec-common').Range;
 

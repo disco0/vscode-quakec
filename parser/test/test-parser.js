@@ -1,4 +1,5 @@
 const assert = require("assert");
+const { describe, it, afterEach, beforeEach } = require('mocha');
 const qparse = require("../quakec-parser").parse;
 
 const parse = function(program) {

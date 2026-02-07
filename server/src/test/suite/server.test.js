@@ -1,6 +1,7 @@
 const assert = require('assert');
 const vscode = require('vscode');
 const path = require('path');
+const { suite, test } = require('mocha');
 
 suite('Language Server Test Suite', () => {
     test('Hover Provider Test', (done) => {

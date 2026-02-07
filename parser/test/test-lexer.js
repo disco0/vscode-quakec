@@ -1,4 +1,5 @@
 const assert = require("assert");
+const { describe, it, afterEach, beforeEach } = require('mocha');
 const Lexer = require("../quakec-lexer").Lexer;
 
 describe("Lexer", function() {

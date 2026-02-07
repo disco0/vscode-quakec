@@ -59,11 +59,15 @@
 	"scripts": {
 		"deploy": "vsce publish --yarn",
 		"postinstall": "cd client && npm install && cd ../server && npm install && cd ../parser && npm install && cd ..",
-		"test": "mocha */test/**/*.js && node ./server/src/test/runTests.js"
+		"test-old": "mocha */test/**/*.js && node ./server/src/test/runTests.js",
+        "test": "vscode-test"
 	},
 	"devDependencies": {
-		"mocha": "^8.4.0",
-		"vsce": "^1.103.1",
-		"vscode-test": "^1.6.1"
+		"@vscode/test-electron": "^2.5.2",
+		"@vscode/vsce": "^3.7.1",
+		"mocha": "^11.7.5"
+	},
+	"dependencies": {
+		"@vscode/test-cli": "^0.0.12"
 	}
 }
