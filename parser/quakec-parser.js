@@ -1073,6 +1073,16 @@ Define.prefix("(", function() {
 });
 
 Define.assignment("=");
+Define.assignment("+=");
+Define.assignment("-=");
+Define.assignment("*=");
+Define.assignment("/=");
+Define.assignment("%=");
+Define.assignment("&=");
+Define.assignment("|=");
+Define.assignment("^=");
+Define.assignment(">>=");
+Define.assignment("<<=");
 
 Define.symbol("(end)");
 Define.symbol("(literal)").nud = itself;
