@@ -638,7 +638,8 @@ class Define {
                 Parse.advance(",");
             }
 
-            Error.Strategy.missingSemicolon();
+            // Optional when building with fteqcc. Add a flag?
+            Error.Strategy.missingSemicolon(true);
 
             if (a.length === 0) {
                 return null;
@@ -916,14 +917,17 @@ class Error {}
  */
 Error.Strategy = class Strategy {
     /**
-     * Expects the current token to be a semicolon. Will raise error if expectation is not met.
+     * Expects the current token to be a semicolon. Will raise error if expectation is not met and
+     * optional is false.
      */
-    static missingSemicolon() {
+    static missingSemicolon(optional = false) {
         if (Context.token.id !== ";") {
-            const previousToken = Context.symbols.slice(-2, -1);
+            if(!optional) {
+                const previousToken = Context.symbols.slice(-2, -1);
 
-            if (previousToken && previousToken.length == 1) {
-                previousToken[0].error("Missing semicolon.");
+                if (previousToken && previousToken.length == 1) {
+                    previousToken[0].error("Missing semicolon.");
+                }
             }
         }
         else {
