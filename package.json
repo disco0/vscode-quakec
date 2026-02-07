@@ -1,10 +1,10 @@
 {
-	"name": "quakec",
-	"displayName": "QuakeC",
-	"description": "QuakeC Intellisense, diagnostics, and code browsing.",
-	"author": "Joshua Skelton",
+	"name": "quakec-disco0",
+	"displayName": "QuakeC (disco0)",
+	"description": "[Forked] QuakeC Intellisense, diagnostics, and code browsing.",
+	"author": "disco0",
 	"license": "MIT",
-	"version": "0.2.3",
+	"version": "0.2.4",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/joshuaskelly/vscode-quakec"
