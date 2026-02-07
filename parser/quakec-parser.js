@@ -696,7 +696,6 @@ class Parse {
 
         const value = nextToken.value;
         arity = nextToken.type;
-        console.log(`[advance] ARITY: `, arity)
 
         if (arity === "name") {
             prototypeObject = Context.scope.find(value);
@@ -722,13 +721,6 @@ class Parse {
             arity = "type";
             prototypeObject = Context.scope.find(value);
         }
-        // else if (arity === "qualifier")
-        // {
-        //     prototypeObject = Context.symbol_table[value];
-        //     // -------------------------- TODO --------------------------
-        //     console.log(`[advance:qualifier] TODO: ${JSON.stringify(nextToken, null, 4)}\nproto: ${JSON.stringify(prototypeObject, null, 4)}`)
-        //     // -------------------------- TODO --------------------------
-        // }
         else {
             nextToken.error(`Unexpected token: '${nextToken.id}'`);
         }
@@ -870,8 +862,6 @@ class Parse {
      */
     static definition() {
         const currentSymbol = Context.token;
-        console.log(`[definition] currentSymbol: ${currentSymbol.value}`)
-        // console.log(`[definition] currentSymbol: ${currentSymbol.value}\n${JSON.stringify(currentSymbol, null, 4)}`)
 
         if (currentSymbol.ded) {
             Parse.advance();
