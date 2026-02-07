@@ -1082,6 +1082,7 @@ Define.assignment("-=");
 Define.assignment("*=");
 Define.assignment("/=");
 Define.assignment("%=");
+Define.assignment("&~=");
 Define.assignment("&=");
 Define.assignment("|=");
 Define.assignment("^=");
