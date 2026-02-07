@@ -53,6 +53,7 @@ const new_lexer = function() {
     lexer.addRule(/"([^"]|\\\S)*"/, process_lexeme("string"));
     lexer.addRule(/'\s*-?[0-9]+(\.[0-9]+)?\s+-?[0-9]+(\.[0-9]+)?\s+-?[0-9]+(\.[0-9]+)?\s*'/, process_lexeme("vector"));
     lexer.addRule(/#[0-9]+/, process_lexeme("builtin"));
+    lexer.addRule(/(const)\s+(float|vector|string)\b/, process_lexeme("type"));
     lexer.addRule(/\.?(void|float|vector|string|entity|\$frame)\b/, process_lexeme("type"));
     lexer.addRule(/[A-Za-z_]+[A-Za-z0-9_]*/, process_lexeme("name"));
     lexer.addRule(/(&&|\|\||(?:[\+\-\*\/%\|^]|<<|>>)=|&[~]?=|<=|>=|==|!=|!|\*|\/|-|\+|=|\.|,|<|>|&|\||;|\(|\)|\[|\]|\{|\}|\$)/, process_lexeme("operator"));

@@ -2,6 +2,8 @@ float foo = 0;
 
 void() bar = {};
 
+void(entity foo) optional_semi = { }
+
 void(entity foo) assignments =
 {
 	//
@@ -12,7 +14,7 @@ void(entity foo) assignments =
 	// Equivelent to 'lhs |= rhs;' or 'lhs = lhs | rhs;', changing lhs to a value which
 	// includes all bits that were set in the rhs.
 	// This operator is implemented for hexenc compatibility.
-	// 
+	//
 	// [*] (-) bitclear
 	// Equivelent to 'lhs = lhs & ~rhs;', changing lhs to a value which has no bits
 	// set that were in the rhs.
@@ -37,6 +39,4 @@ void(entity foo) assignments =
 	foo.bar &~= self.bar;
 };
 
-void(entity foo) optional_semi =
-{
-}
+const float FOO = 0;

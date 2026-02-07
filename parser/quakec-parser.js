@@ -435,9 +435,9 @@ class Define {
      * Defines a definition statement.
      *
      * @param {string} id
-     * @param {() => Symbol} std
-     * @param {() => Symbol} tyd
-     * @param {() => Symbol} ded
+     * @param {() => Symbol} [std]
+     * @param {() => Symbol} [tyd]
+     * @param {() => Symbol} [ded]
      *
      * @returns {Symbol}
      */
@@ -639,6 +639,7 @@ class Define {
             }
 
             // Optional when building with fteqcc. Add a flag?
+            // FIXME(disco0): Breaks required semicolon on non-function variable assignments.
             Error.Strategy.missingSemicolon(true);
 
             if (a.length === 0) {
@@ -695,6 +696,7 @@ class Parse {
 
         const value = nextToken.value;
         arity = nextToken.type;
+        console.log(`[advance] ARITY: `, arity)
 
         if (arity === "name") {
             prototypeObject = Context.scope.find(value);
@@ -720,6 +722,13 @@ class Parse {
             arity = "type";
             prototypeObject = Context.scope.find(value);
         }
+        // else if (arity === "qualifier")
+        // {
+        //     prototypeObject = Context.symbol_table[value];
+        //     // -------------------------- TODO --------------------------
+        //     console.log(`[advance:qualifier] TODO: ${JSON.stringify(nextToken, null, 4)}\nproto: ${JSON.stringify(prototypeObject, null, 4)}`)
+        //     // -------------------------- TODO --------------------------
+        // }
         else {
             nextToken.error(`Unexpected token: '${nextToken.id}'`);
         }
@@ -861,6 +870,8 @@ class Parse {
      */
     static definition() {
         const currentSymbol = Context.token;
+        console.log(`[definition] currentSymbol: ${currentSymbol.value}`)
+        // console.log(`[definition] currentSymbol: ${currentSymbol.value}\n${JSON.stringify(currentSymbol, null, 4)}`)
 
         if (currentSymbol.ded) {
             Parse.advance();
@@ -984,7 +995,7 @@ Error.Recovery = class Recovery {
             id = currentToken.value;
         }
 
-        currentToken.error(`Unexpected token: '${id}'`);
+        currentToken.error(`[advanceWhile] Unexpected token: '${id}'`);
 
         while(condition(currentToken) && currentToken.id !== "(end)") {
             currentToken = Parse.advance();
@@ -1169,6 +1180,9 @@ Define.definition("vector");
 Define.definition("string");
 Define.definition("entity");
 Define.definition(".void");
+Define.definition("const float");
+Define.definition("const vector");
+Define.definition("const string");
 Define.definition(".float");
 Define.definition(".vector");
 Define.definition(".string");
@@ -1198,7 +1212,6 @@ Define.definition("$frame",
         }
     }
 );
-
 
 Define.statement("while", function() {
     Parse.advance("(");
